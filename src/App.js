@@ -1,10 +1,11 @@
-import React from "react";
-import "./App.css";
+import React from 'react';
+import './App.css';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
     <div className="App">
-      <h1>PARTY TIME</h1>
+      <Dashboard />
     </div>
   );
 }
