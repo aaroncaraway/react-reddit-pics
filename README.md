@@ -12,9 +12,10 @@
 4. npm install -D eslint-config-prettier eslint-plugin-prettier
 5. create .eslintrc.json & .prettierrc
 6. update settings to `editor.formatOnSave: true`
-
+7. npm i axios uuid
 
 .eslintrc.json
+
 ```
 {
   "extends": ["airbnb", "prettier"],
