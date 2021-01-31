@@ -21,6 +21,7 @@ const useStyles = makeStyles({
 
 export default function MediaCard({ item, key }) {
   const classes = useStyles();
+  const photoUrl = `https://www.reddit.com/${item.data.permalink}`;
 
   return (
     <Card className={classes.root} key={key}>
@@ -39,7 +40,7 @@ export default function MediaCard({ item, key }) {
         <Button size="small" color="primary">
           Share
         </Button>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" target="_blank" href={photoUrl}>
           Learn More
         </Button>
       </CardActions>
