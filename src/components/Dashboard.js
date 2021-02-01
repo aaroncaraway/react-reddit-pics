@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import ListItems from './ListItems';
-import ItemModal from './ItemModal';
 
 const useStyles = makeStyles({
   root: {
@@ -29,7 +28,6 @@ function Dashboard() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <ItemModal />
       <ListItems />
     </div>
   );

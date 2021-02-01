@@ -5,23 +5,15 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import { Typography } from '@material-ui/core';
 // import CardMedia from '@material-ui/core/CardMedia';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   modal: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-    width: 1000,
-    '@media (min-width: 1280px)': {
-      width: 500,
-    },
   },
   imageModal: {
     maxWidth: 500,
@@ -30,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
     },
     height: 'auto',
   },
+  modalBox: {
+    backgroundColor: 'white',
+  },
 }));
 
 export default function TransitionsModal({ item }) {
@@ -37,6 +32,7 @@ export default function TransitionsModal({ item }) {
   const [open, setOpen] = React.useState(false);
   const title = item ? item.data.title : 'Test Post Plz Ignore';
   const photo = item ? item.data.url : 'Test Post Plz Ignore';
+  const author = item ? item.data.author : 'Test Post Plz Ignore';
 
   const handleOpen = () => {
     setOpen(true);
@@ -49,7 +45,7 @@ export default function TransitionsModal({ item }) {
   return (
     <div>
       <Button type="button" onClick={handleOpen}>
-        react-transition-group
+        MORE INFO!
       </Button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -64,7 +60,11 @@ export default function TransitionsModal({ item }) {
         }}
       >
         <Fade in={open}>
-          <img src={photo} alt={title} className={classes.imageModal} />
+          <Box className={classes.modalBox}>
+            <img src={photo} alt={title} className={classes.imageModal} />
+            <Typography>{title}</Typography>
+            <Typography>{author}</Typography>
+          </Box>
         </Fade>
       </Modal>
     </div>
