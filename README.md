@@ -6,7 +6,11 @@
 
 ### TO RUN:
 
-`yarn start`
+`npm start`
+
+### TO PUSH LIVE (to gh-pages):
+
+`npm run deploy`
 
 ### TO MAKE:
 

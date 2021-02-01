@@ -12,13 +12,13 @@ import { v1 as uuid } from 'uuid';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 340,
     height: 525,
-    margin: '20px 5px 5px 20px',
+    margin: '20px 5px 20px 5px',
   },
   media: {
-    height: 345,
-    width: 345,
+    height: 340,
+    width: 340,
   },
 });
 
