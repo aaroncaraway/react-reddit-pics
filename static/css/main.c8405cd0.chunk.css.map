@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/App.css"],"names":[],"mappings":"AAAA,KACE,QAAW,CACX,SACF,CAEA,WACE,aAAc,CACd,eACF","file":"main.c8405cd0.chunk.css","sourcesContent":["body {\n  margin: 0px;\n  padding: 0px;\n}\n\n.dashboard {\n  margin: 0 auto;\n  max-width: 400px;\n}\n"]}
