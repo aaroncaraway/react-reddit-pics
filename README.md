@@ -38,3 +38,12 @@
   "singleQuote": true
 }
 ```
+
+### TO HOST ON github pages
+
+[HELP HERE](https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f)
+
+1. npm i gh-pages --save-dev
+2. Update package json to include "homepage" and two other options in "scripts"
+3. NOTE: On github, in settings, for github pages options, branch is gh-pages
+4. npm run deploy
