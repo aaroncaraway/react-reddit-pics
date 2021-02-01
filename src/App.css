@@ -3,7 +3,15 @@ body {
   padding: 0px;
 }
 
+.dashboard-title {
+  text-align: center;
+}
+
 .dashboard {
-  margin: 0 auto;
-  max-width: 400px;
+  width: 100%;
+}
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

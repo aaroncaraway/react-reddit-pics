@@ -13,7 +13,8 @@ import { v1 as uuid } from 'uuid';
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
-    marginBottom: 20,
+    height: 525,
+    margin: '20px 5px 5px 20px',
   },
   media: {
     height: 345,
@@ -25,6 +26,8 @@ export default function MediaCard({ item }) {
   const classes = useStyles();
   const photoUrl = `https://www.reddit.com/${item.data.permalink}`;
   const selfText = item.data.selftext;
+  const clippedTitle =
+    item.data.title.length > 50 ? `${item.data.title.substring(0, 50)}...` : item.data.title;
 
   return (
     <div key={uuid()}>
@@ -33,8 +36,8 @@ export default function MediaCard({ item }) {
           <CardActionArea target="_blank" href={photoUrl}>
             <CardMedia className={classes.media} image={item.data.url} title={item.data.title} />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {item.data.title}
+              <Typography gutterBottom variant="h6" component="h2">
+                {clippedTitle}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
                 {item.data.author}
@@ -43,7 +46,7 @@ export default function MediaCard({ item }) {
           </CardActionArea>
           <CardActions>
             <Button size="small" color="primary" target="_blank" href={photoUrl}>
-              See Lorge Boi Version
+              See it on Reddit
             </Button>
           </CardActions>
         </Card>
