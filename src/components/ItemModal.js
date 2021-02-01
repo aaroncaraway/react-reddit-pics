@@ -5,7 +5,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
-import CardMedia from '@material-ui/core/CardMedia';
+// import CardMedia from '@material-ui/core/CardMedia';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -18,12 +18,17 @@ const useStyles = makeStyles((theme) => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    width: 500,
+    width: 1000,
+    '@media (min-width: 1280px)': {
+      width: 500,
+    },
   },
-  media: {
-    marginBottom: '33%',
-    width: 500,
-    height: '33%',
+  imageModal: {
+    maxWidth: 500,
+    '@media (min-width: 1280px)': {
+      maxWidth: 1000,
+    },
+    height: 'auto',
   },
 }));
 
@@ -59,11 +64,7 @@ export default function TransitionsModal({ item }) {
         }}
       >
         <Fade in={open}>
-          <div className={classes.paper}>
-            {/* <h2 id="transition-modal-title">{title}</h2> */}
-            <CardMedia className={classes.media} image={photo} title={title} />
-            {/* <p id="transition-modal-description">react-transition-group animates me.</p> */}
-          </div>
+          <img src={photo} alt={title} className={classes.imageModal} />
         </Fade>
       </Modal>
     </div>
