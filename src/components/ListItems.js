@@ -11,7 +11,7 @@ const ListItems = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios('https://www.reddit.com/r/pics/.json?jsonp=');
-      // console.log(result.data.data.children);
+      console.log(result.data.data.children);
       setData({ photos: result.data.data.children });
       setLoading(false);
     };

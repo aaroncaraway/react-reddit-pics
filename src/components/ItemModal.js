@@ -16,9 +16,9 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
   },
   imageModal: {
-    maxWidth: 500,
+    maxWidth: 340,
     '@media (min-width: 1280px)': {
-      maxWidth: 1000,
+      maxWidth: 500,
     },
     height: 'auto',
   },
@@ -30,9 +30,8 @@ const useStyles = makeStyles(() => ({
 export default function TransitionsModal({ item }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const title = item ? item.data.title : 'Test Post Plz Ignore';
-  const photo = item ? item.data.url : 'Test Post Plz Ignore';
-  const author = item ? item.data.author : 'Test Post Plz Ignore';
+
+  const actualItem = item.data ? item.data : 'Test Post Plz Ignore';
 
   const handleOpen = () => {
     setOpen(true);
@@ -61,9 +60,10 @@ export default function TransitionsModal({ item }) {
       >
         <Fade in={open}>
           <Box className={classes.modalBox}>
-            <img src={photo} alt={title} className={classes.imageModal} />
-            <Typography>{title}</Typography>
-            <Typography>{author}</Typography>
+            <img src={actualItem.url} alt={actualItem.title} className={classes.imageModal} />
+            <Typography>{actualItem.ups}</Typography>
+            <Typography>{actualItem.title}</Typography>
+            <Typography>{actualItem.author}</Typography>
           </Box>
         </Fade>
       </Modal>
