@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
+import CardMedia from '@material-ui/core/CardMedia';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -16,12 +18,20 @@ const useStyles = makeStyles((theme) => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    width: 500,
+  },
+  media: {
+    marginBottom: '33%',
+    width: 500,
+    height: '33%',
   },
 }));
 
-export default function TransitionsModal() {
+export default function TransitionsModal({ item }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const title = item ? item.data.title : 'Test Post Plz Ignore';
+  const photo = item ? item.data.url : 'Test Post Plz Ignore';
 
   const handleOpen = () => {
     setOpen(true);
@@ -50,8 +60,9 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">react-transition-group animates me.</p>
+            {/* <h2 id="transition-modal-title">{title}</h2> */}
+            <CardMedia className={classes.media} image={photo} title={title} />
+            {/* <p id="transition-modal-description">react-transition-group animates me.</p> */}
           </div>
         </Fade>
       </Modal>

@@ -9,6 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { v1 as uuid } from 'uuid';
+import ItemModal from './ItemModal';
 
 const useStyles = makeStyles({
   root: {
@@ -45,6 +46,7 @@ export default function MediaCard({ item }) {
             </CardContent>
           </CardActionArea>
           <CardActions>
+            <ItemModal item={item} />
             <Button size="small" color="primary" target="_blank" href={photoUrl}>
               See it on Reddit
             </Button>
