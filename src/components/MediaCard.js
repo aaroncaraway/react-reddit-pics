@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 340,
     height: 525,
-    margin: '20px 5px 20px 5px',
+    margin: '10px 10px 10px 10px',
   },
   media: {
     height: 340,
@@ -24,28 +24,31 @@ const useStyles = makeStyles({
 });
 
 export default function MediaCard({ item }) {
+  const photo = item.data;
   const classes = useStyles();
-  const photoUrl = `https://www.reddit.com/${item.data.permalink}`;
-  const selfText = item.data.selftext;
-  const hasPhoto =
-    item.data.url.indexOf('.jpg') !== -1 ||
-    (item.data.url.indexOf('.gif') !== -1 && item.data.url.indexOf('.gifv') === -1) ||
-    item.data.url.indexOf('.png') !== -1;
-  const clippedTitle =
-    item.data.title.length > 50 ? `${item.data.title.substring(0, 50)}...` : item.data.title;
+  const photoUrl = `https://www.reddit.com/${photo.permalink}`;
+  const selfText = photo.selftext;
+  // TODO: Refactor
+  // This song and dance ensures we're getting a photo (not a video)
+  // or a crosspost
+  const hasphoto =
+    photo.url.indexOf('.jpg') !== -1 ||
+    (photo.url.indexOf('.gif') !== -1 && photo.url.indexOf('.gifv') === -1) ||
+    photo.url.indexOf('.png') !== -1;
+  const clippedTitle = photo.title.length > 50 ? `${photo.title.substring(0, 50)}...` : photo.title;
 
   return (
     <div key={uuid()}>
-      {selfText.length < 2 && hasPhoto && (
+      {selfText.length < 2 && hasphoto && (
         <Card className={classes.root}>
           <CardActionArea target="_blank" href={photoUrl}>
-            <CardMedia className={classes.media} image={item.data.url} title={item.data.title} />
+            <CardMedia className={classes.media} image={photo.url} title={photo.title} />
             <CardContent>
               <Typography gutterBottom variant="h6" component="h2">
                 {clippedTitle}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                {item.data.author}
+                {photo.author}
               </Typography>
             </CardContent>
           </CardActionArea>
