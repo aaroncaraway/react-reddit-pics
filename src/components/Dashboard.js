@@ -12,9 +12,6 @@ function Dashboard() {
 
   useEffect(() => {
     const fetchData = async () => {
-      // const result = await axios(`https://www.reddit.com/${subreddit}/.json`);
-      // const url = `https://www.reddit.com/r/${subreddit}/.json?jsonp=`;
-
       const url = query
         ? `https://www.reddit.com/r/${subreddit}/search.json?q=${query}&restrict_sr=on&include_over_18=on&sort=relevance&t=all`
         : `https://www.reddit.com/r/${subreddit}/.json?jsonp=`;
@@ -33,15 +30,13 @@ function Dashboard() {
   };
 
   const changeSub = () => {
-    // const filteredPhotos = data.photos.filter((photo) => photo.data.title.includes('.'));
-    // console.log(filteredPhotos);
     setSubreddit('catsstandingup');
     setQuery(null);
   };
 
   const search = () => {
+    // OLD -- Filtering simply on words in the title
     // const filteredPhotos = data.photos.filter((photo) => photo.data.title.includes('.'));
-    // console.log(filteredPhotos);
     setQuery('dogs');
   };
 

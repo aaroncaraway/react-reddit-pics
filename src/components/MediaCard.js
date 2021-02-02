@@ -27,12 +27,16 @@ export default function MediaCard({ item }) {
   const classes = useStyles();
   const photoUrl = `https://www.reddit.com/${item.data.permalink}`;
   const selfText = item.data.selftext;
+  const hasPhoto =
+    item.data.url.indexOf('.jpg') !== -1 ||
+    (item.data.url.indexOf('.gif') !== -1 && item.data.url.indexOf('.gifv') === -1) ||
+    item.data.url.indexOf('.png') !== -1;
   const clippedTitle =
     item.data.title.length > 50 ? `${item.data.title.substring(0, 50)}...` : item.data.title;
 
   return (
     <div key={uuid()}>
-      {selfText.length < 2 && (
+      {selfText.length < 2 && hasPhoto && (
         <Card className={classes.root}>
           <CardActionArea target="_blank" href={photoUrl}>
             <CardMedia className={classes.media} image={item.data.url} title={item.data.title} />
