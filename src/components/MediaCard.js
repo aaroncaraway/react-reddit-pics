@@ -35,7 +35,7 @@ export default function MediaCard({ item }) {
     photo.url.indexOf('.jpg') !== -1 ||
     (photo.url.indexOf('.gif') !== -1 && photo.url.indexOf('.gifv') === -1) ||
     photo.url.indexOf('.png') !== -1;
-  const clippedTitle = photo.title.length > 50 ? `${photo.title.substring(0, 50)}...` : photo.title;
+  const clippedTitle = photo.title.length > 50 ? `${photo.title.substring(0, 42)}...` : photo.title;
 
   return (
     <div key={uuid()}>
