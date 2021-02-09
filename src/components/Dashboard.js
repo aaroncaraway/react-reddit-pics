@@ -88,6 +88,7 @@ function Dashboard() {
       const url = query
         ? `https://www.reddit.com/r/${subreddit}/search.json?q=${query}&restrict_sr=on&include_over_18=on&sort=relevance&t=all`
         : `https://www.reddit.com/r/${subreddit}/.json?jsonp=`;
+      console.log('URL', url);
       const result = await axios(url);
 
       setData({ photos: result.data.data.children });
@@ -114,7 +115,8 @@ function Dashboard() {
 
   const changeSub = () => {
     setLoading(true);
-    setSubreddit('catsstandingup');
+    const newSub = subreddit === 'catsstandingup' ? 'pics' : 'catsstandingup';
+    setSubreddit(newSub);
 
     setQuery(null);
   };
