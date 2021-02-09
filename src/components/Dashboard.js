@@ -49,6 +49,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   navButton: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
     backgroundColor: 'white',
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.75),

@@ -1,8 +1,10 @@
 # Reddit r/Pics Browser
 
-### TO SEE:
+## TO SEE:
 
 [LIVE](https://aaroncaraway.github.io/react-reddit-pics/)
+
+### =========================================
 
 ### TO RUN:
 
@@ -11,6 +13,20 @@
 ### TO PUSH LIVE (to gh-pages):
 
 `npm run deploy`
+
+### =========================================
+
+## Wish List
+
+1. Infinite scroll (with pagination, started)
+2. Better styling
+   1. Cleaner Modal
+   2. Alignment issues
+   3. See title on hover
+3. Modal instead of reddit on image click
+4. ...General refactoring
+
+### =========================================
 
 ### TO MAKE:
 
