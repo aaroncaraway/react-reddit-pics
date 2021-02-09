@@ -1,14 +1,13 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { fade, makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
-// import CardMedia from '@material-ui/core/CardMedia';
 
 const useStyles = makeStyles(() => ({
   modal: {
@@ -47,6 +46,13 @@ const useStyles = makeStyles(() => ({
   modalBox: {
     backgroundColor: 'white',
   },
+  button: {
+    backgroundColor: '#3F51B5',
+    '&:hover': {
+      backgroundColor: fade('#3F51B5', 0.75),
+    },
+    color: 'white',
+  },
 }));
 
 export default function TransitionsModal({ item }) {
@@ -65,7 +71,7 @@ export default function TransitionsModal({ item }) {
 
   return (
     <div>
-      <Button type="button" onClick={handleOpen}>
+      <Button type="button" onClick={handleOpen} className={classes.button}>
         MORE INFO!
       </Button>
       <Modal

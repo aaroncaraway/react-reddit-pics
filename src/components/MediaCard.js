@@ -8,7 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { v1 as uuid } from 'uuid';
+// import { v1 as uuid } from 'uuid';
 import ItemModal from './ItemModal';
 
 const useStyles = makeStyles({
@@ -38,7 +38,7 @@ export default function MediaCard({ item }) {
   const clippedTitle = photo.title.length > 50 ? `${photo.title.substring(0, 42)}...` : photo.title;
 
   return (
-    <div key={uuid()}>
+    <div>
       {selfText.length < 2 && hasphoto && (
         <Card className={classes.root}>
           <CardActionArea target="_blank" href={photoUrl}>
