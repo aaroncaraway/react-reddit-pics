@@ -9,14 +9,14 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: 'vw',
     height: 'vh',
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.common.white,
     textAlign: 'center',
   },
   imageModalBox: {
@@ -44,14 +44,14 @@ const useStyles = makeStyles(() => ({
     },
   },
   modalBox: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.common.white,
   },
   button: {
     backgroundColor: '#3F51B5',
     '&:hover': {
       backgroundColor: fade('#3F51B5', 0.75),
     },
-    color: 'white',
+    color: theme.palette.common.white,
   },
 }));
 

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+// eslint-disable jsx-props-no-spreading
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -7,6 +8,12 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
 import Gallery from './Gallery';
 
 const useStyles = makeStyles((theme) => ({
@@ -52,15 +59,17 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.common.white,
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.75),
     },
     color: '#3F51B5',
     fontWeight: 'bold',
+    marginRight: 10,
   },
   title: {
     fontWeight: 'bold',
+    color: theme.palette.common.white,
   },
   form: {
     display: 'none',
@@ -68,6 +77,9 @@ const useStyles = makeStyles((theme) => ({
       display: 'block',
     },
     marginBlockEnd: '0em',
+  },
+  subMenu: {
+    zIndex: '2',
   },
 }));
 
@@ -88,7 +100,6 @@ function Dashboard() {
       const url = query
         ? `https://www.reddit.com/r/${subreddit}/search.json?q=${query}&restrict_sr=on&include_over_18=on&sort=relevance&t=all`
         : `https://www.reddit.com/r/${subreddit}/.json?jsonp=`;
-      console.log('URL', url);
       const result = await axios(url);
 
       setData({ photos: result.data.data.children });
@@ -129,13 +140,56 @@ function Dashboard() {
     setQuery(searchTerm);
   };
 
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const handleSubChange = (event, sub) => {
+    setSubreddit(sub);
+    handleClose(event);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = useRef(open);
+  useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
+
+  const goHome = () => {
+    setQuery(null);
+    setSubreddit('pics');
+  };
+
   return (
     <div className="dashboard">
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Prettier Reddit Pics
-          </Typography>
+          <Button onClick={goHome}>
+            <Typography variant="h6" className={classes.title}>
+              Prettier Reddit Pics
+            </Typography>
+          </Button>
           <form onSubmit={handleSubmit} className={classes.form}>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -156,6 +210,63 @@ function Dashboard() {
           <Button className={classes.navButton} onClick={() => changeSub()}>
             CHANGE SUB
           </Button>
+          <div className={classes.subMenu}>
+            <Button
+              ref={anchorRef}
+              aria-controls={open ? 'menu-list-grow' : undefined}
+              aria-haspopup="true"
+              onClick={handleToggle}
+              className={classes.navButton}
+            >
+              SHOW ME ANIMALS WITH JOBS!
+            </Button>
+            <Popper
+              open={open}
+              anchorEl={anchorRef.current}
+              role={undefined}
+              transition
+              disablePortal
+            >
+              {({ TransitionProps, placement }) => (
+                <Grow
+                  // eslint-disable-next-line react/jsx-props-no-spreading
+                  {...TransitionProps}
+                  style={{
+                    transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+                  }}
+                >
+                  <Paper>
+                    <ClickAwayListener onClickAway={handleClose}>
+                      <MenuList
+                        autoFocusItem={open}
+                        id="menu-list-grow"
+                        onKeyDown={handleListKeyDown}
+                      >
+                        <MenuItem
+                          onClick={(e) => handleSubChange(e, 'dogswithjobs')}
+                          value="dogswithjobs"
+                        >
+                          Dogs With Jobs
+                        </MenuItem>
+                        <MenuItem
+                          onClick={(e) => handleSubChange(e, 'catswithjobs')}
+                          value="catswithjobs"
+                        >
+                          Cats With Jobs
+                        </MenuItem>
+                        <MenuItem
+                          onClick={(e) => handleSubChange(e, 'turtleswithjobs')}
+                          value="turtleswithjobs"
+                        >
+                          Turtles With Jobs
+                        </MenuItem>
+                      </MenuList>
+                    </ClickAwayListener>
+                  </Paper>
+                </Grow>
+              )}
+            </Popper>
+          </div>
         </Toolbar>
 
         {/* <Button onClick={() => filterData()}>BUTTON</Button> */}
