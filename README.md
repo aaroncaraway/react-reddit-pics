@@ -19,12 +19,19 @@
 ## Wish List
 
 1. Infinite scroll (with pagination, started)
-2. Better styling
+2. "Change sub" can change to any sub (started)
+3. Search on mobile (started)
+4. Overhaul UX based on feedback
+5. Get feedback from:
+   1. Mom
+   2. Husband
+   3. BFF
+6. Better styling
    1. Cleaner Modal
    2. Alignment issues
    3. See title on hover
-3. Modal instead of reddit on image click
-4. ...General refactoring
+7. Modal instead of reddit on image click
+8. Tests
 
 ### =========================================
 

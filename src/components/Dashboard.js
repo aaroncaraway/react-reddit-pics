@@ -7,7 +7,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
-// import ListItems from './ListItems';
 import Gallery from './Gallery';
 
 const useStyles = makeStyles((theme) => ({
@@ -61,12 +60,13 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
   },
   title: {
+    fontWeight: 'bold',
+  },
+  form: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
-  },
-  form: {
     marginBlockEnd: '0em',
   },
 }));
@@ -106,6 +106,7 @@ function Dashboard() {
   }, [subreddit, query]);
 
   // const filterData = () => {
+  //   testing to see if my filter returns all titles with a period
   //   const filteredPhotos = data.photos.filter((photo) => photo.data.title.includes('.'));
   //   console.log(filteredPhotos);
   //   setData({ photos: filteredPhotos });
