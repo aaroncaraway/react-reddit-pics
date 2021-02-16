@@ -1,5 +1,5 @@
 // eslint-disable jsx-props-no-spreading
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -186,6 +186,7 @@ function Dashboard() {
     setSubreddit('pics');
   };
 
+  const photoGallery = useMemo(() => <Gallery photos={data.photos} />, [data.photos]);
   return (
     <div className="dashboard">
       <AppBar position="static">
@@ -283,9 +284,7 @@ function Dashboard() {
           ...loading
         </Typography>
       ) : (
-        <>
-          <Gallery photos={data.photos} />
-        </>
+        <>{photoGallery}</>
       )}
     </div>
   );
