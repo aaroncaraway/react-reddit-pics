@@ -91,9 +91,9 @@ function Dashboard() {
   const [searchTerm, setSearchTerm] = useState('');
   const [query, setQuery] = useState(null);
 
-  const date = new Date();
-  const today = date.getDay();
-  const weekArray = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  // const date = new Date();
+  // const today = date.getDay();
+  // const weekArray = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -101,18 +101,19 @@ function Dashboard() {
         ? `https://www.reddit.com/r/${subreddit}/search.json?q=${query}&restrict_sr=on&include_over_18=on&sort=relevance&t=all`
         : `https://www.reddit.com/r/${subreddit}/.json?jsonp=`;
       const result = await axios(url);
-
+      // console.log(result.data.data.children);
       setData({ photos: result.data.data.children });
+      console.log(result.data.data.children);
       setLoading(false);
-      console.log('*******************');
-      console.log(
-        `Oh hello there!! You're looking especially lovely on this fine ${weekArray[today]}!!`
-      );
-      console.log(
-        "But really, thanks for stopping by. Until we meet again, be kind, be curious, bring a snack, and always pet any cats you find along your way. Here's hoping our adventures intertwine in the future!"
-      );
-      console.log('If you want to see other fun flotsam and jetsam, drop by kendraosburn.com.');
-      console.log('*******************');
+      // console.log('*******************');
+      // console.log(
+      //   `Oh hello there!! You're looking especially lovely on this fine ${weekArray[today]}!!`
+      // );
+      // console.log(
+      //   "But really, thanks for stopping by. Until we meet again, be kind, be curious, bring a snack, and always pet any cats you find along your way. Here's hoping our adventures intertwine in the future!"
+      // );
+      // console.log('If you want to see other fun flotsam and jetsam, drop by kendraosburn.com.');
+      // console.log('*******************');
     };
     fetchData();
   }, [subreddit, query]);
@@ -123,6 +124,10 @@ function Dashboard() {
   //   console.log(filteredPhotos);
   //   setData({ photos: filteredPhotos });
   // };
+
+  const changeInput = (value) => {
+    setSearchTerm(value);
+  };
 
   const changeSub = () => {
     setLoading(true);
@@ -197,7 +202,9 @@ function Dashboard() {
               </div>
 
               <InputBase
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => {
+                  changeInput(e.target.value);
+                }}
                 placeholder="Search…"
                 classes={{
                   root: classes.inputRoot,
