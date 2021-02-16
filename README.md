@@ -85,4 +85,8 @@
 
 ## TODO:
 
-update uuid()
+- Remove uuid() -- DONE (item.data.id is key instead. Don't forget the '.data')
+- add useMemo() -- DONE [react docs used](https://reactjs.org/docs/hooks-faq.html#how-to-memoize-calculations)
+- Stop app bar from rerendering on input onChange
+- Tidy up "Dashboard" component
+- Add indication of "loading" after input submit

@@ -37,7 +37,7 @@ export default function MediaCard({ item }) {
   const clippedTitle = photo.title.length > 50 ? `${photo.title.substring(0, 42)}...` : photo.title;
 
   return (
-    <div>
+    <div key={item.id}>
       {selfText.length < 2 && hasphoto && (
         <Card className={classes.root}>
           <CardActionArea target="_blank" href={photoUrl}>
