@@ -180,7 +180,7 @@ function Dashboard() {
         <Toolbar>
           <Button onClick={goHome}>
             <Typography variant="h6" className={classes.title}>
-              Prettier Reddit Pics
+              Prettier Reddit Pics!!
             </Typography>
           </Button>
           <form onSubmit={handleSubmit} className={classes.form}>
