@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 export default function MediaCard({ item }) {
   const photo = item.data;
   const classes = useStyles();
-  const photoUrl = `https://www.reddit.com/${photo.permalink}`;
+  const photoUrl = `https://www.reddit.com${photo.permalink}`;
   const selfText = photo.selftext;
   // TODO: Refactor
   // This song and dance ensures we're getting a photo (not a video)
